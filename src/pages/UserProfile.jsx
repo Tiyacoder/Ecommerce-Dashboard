@@ -1,7 +1,9 @@
 import React from 'react';
-import { Box, Grid, Typography, Avatar, Divider, Button } from '@mui/material';
+import { Box, Grid, Typography, Avatar, Divider, Button, Paper } from '@mui/material';
 import {
-  Phone, Email, Language, LocationOn, Facebook, Twitter, LinkedIn, WhatsApp, YouTube
+  Phone, Email, Language, LocationOn,
+  Facebook, Twitter, LinkedIn, WhatsApp, YouTube,
+  ShoppingCart, Star, ShoppingBag
 } from '@mui/icons-material';
 
 const UserProfile = () => {
@@ -48,9 +50,9 @@ const UserProfile = () => {
 
             <Typography variant="subtitle2" gutterBottom>Biography</Typography>
             <Typography fontSize={14} color="text.secondary">
-             It has survived not only five centuries,<br />
-            but also the leap into electronic typesetting, remaining essentially unchanged.<br />
-            It was popularised in the 1960s with the release of Letraset sheets
+              It has survived not only five centuries,<br />
+              but also the leap into electronic typesetting, remaining essentially unchanged.<br />
+              It was popularised in the 1960s with the release of Letraset sheets
             </Typography>
 
             <Divider sx={{ my: 2 }} />
@@ -66,8 +68,67 @@ const UserProfile = () => {
           </Box>
         </Grid>
 
-        {/* RIGHT PANEL: Recent Activities */}
+        {/* RIGHT PANEL: Cards + Recent Activities */}
         <Grid item xs={12} md={8}>
+          {/* Card Row */}
+          <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
+            <Paper
+              sx={{
+                flex: 1,
+                bgcolor: '#d946ef',
+                color: 'white',
+                p: 2,
+                borderRadius: 2,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}
+            >
+              <Box>
+                <Typography fontWeight={700} fontSize={20}>5789</Typography>
+                <Typography fontSize={14}>Total Orders</Typography>
+              </Box>
+              <ShoppingCart />
+            </Paper>
+            <Paper
+              sx={{
+                flex: 1,
+                bgcolor: '#fbbf24',
+                color: 'white',
+                p: 2,
+                borderRadius: 2,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}
+            >
+              <Box>
+                <Typography fontWeight={700} fontSize={20}>2373</Typography>
+                <Typography fontSize={14}>Total Reviews</Typography>
+              </Box>
+              <Star />
+            </Paper>
+            <Paper
+              sx={{
+                flex: 1,
+                bgcolor: '#10b981',
+                color: 'white',
+                p: 2,
+                borderRadius: 2,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}
+            >
+              <Box>
+                <Typography fontWeight={700} fontSize={20}>7893</Typography>
+                <Typography fontSize={14}>Total Products</Typography>
+              </Box>
+              <ShoppingBag />
+            </Paper>
+          </Box>
+
+          {/* Recent Activities */}
           <Box sx={{ borderRadius: 2, p: 3, backgroundColor: '#fff', boxShadow: 1 }}>
             <Typography variant="h6" fontWeight={600}>Recent Activities</Typography>
 

@@ -19,8 +19,11 @@ import {
   Twitter as TwitterIcon,
   Home as HomeIcon
 } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const navigate = useNavigate();
+
   return (
     <Box
       sx={{
@@ -49,9 +52,9 @@ const Register = () => {
             & ADMIN PANEL
           </Typography>
           <Typography variant="body2" sx={{ color: '#555', mb: 4 }}>
-             Build visually stunning dashboards and intuitive admin experiences
-  with clean design, advanced components, and a seamless user journey.
-  Perfect for developers who care about performance and elegance.
+            Build visually stunning dashboards and intuitive admin experiences
+            with clean design, advanced components, and a seamless user journey.
+            Perfect for developers who care about performance and elegance.
           </Typography>
           <Button
             variant="contained"
@@ -60,6 +63,7 @@ const Register = () => {
               backgroundColor: '#0066FF',
               '&:hover': { backgroundColor: '#0055cc' }
             }}
+            onClick={() => navigate('/ecommerce')}
           >
             GO TO HOME
           </Button>
@@ -90,7 +94,6 @@ const Register = () => {
             Register a new account
           </Typography>
 
-          {/* Name */}
           <TextField
             fullWidth
             variant="outlined"
@@ -104,8 +107,6 @@ const Register = () => {
               )
             }}
           />
-
-          {/* Email */}
           <TextField
             fullWidth
             variant="outlined"
@@ -119,8 +120,6 @@ const Register = () => {
               )
             }}
           />
-
-          {/* Password */}
           <TextField
             fullWidth
             type="password"
@@ -135,8 +134,6 @@ const Register = () => {
               )
             }}
           />
-
-          {/* Confirm Password */}
           <TextField
             fullWidth
             type="password"
@@ -151,15 +148,11 @@ const Register = () => {
               )
             }}
           />
-
-          {/* Terms Checkbox */}
           <FormControlLabel
             control={<Checkbox />}
             label="I agree to the all Terms & Condiotions"
             sx={{ mb: 2, textAlign: 'left' }}
           />
-
-          {/* Sign Up Button */}
           <Button
             fullWidth
             variant="contained"
@@ -171,10 +164,7 @@ const Register = () => {
           >
             SIGN UP
           </Button>
-
           <Divider sx={{ my: 2 }}>or</Divider>
-
-          {/* Social Buttons */}
           <Button
             fullWidth
             startIcon={<TwitterIcon />}
@@ -187,7 +177,6 @@ const Register = () => {
           >
             Continue with Twitter
           </Button>
-
           <Button
             fullWidth
             startIcon={<FacebookIcon />}
@@ -199,8 +188,6 @@ const Register = () => {
           >
             Continue with Facebook
           </Button>
-
-          {/* Login Link */}
           <Typography sx={{ mt: 3 }}>
             Already have an account?{' '}
             <Link href="/login" underline="hover">

@@ -19,67 +19,67 @@ import NotificationsPage from './pages/NotificationsPage';
 import SettingsPage from './pages/SettingsPage';
 import BlankPage from './pages/BlankPage';
 
-
-
-
-
-
 const App = () => {
   return (
     <Router>
-      <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
+      <CssBaseline />
+      <Routes>
+        {/* Standalone auth routes (NO Sidebar/Navbar) */}
+        <Route
+          path="/login"
+          element={
+            <Box sx={{ flexGrow: 1, bgcolor: '#f4f7fe', minHeight: '100vh' }}>
+              <Login />
+            </Box>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <Box sx={{ flexGrow: 1, bgcolor: '#f4f7fe', minHeight: '100vh' }}>
+              <Register />
+            </Box>
+          }
+        />
+        <Route
+          path="/forgot-password"
+          element={
+            <Box sx={{ flexGrow: 1, bgcolor: '#f4f7fe', minHeight: '100vh' }}>
+              <ForgotPassword />
+            </Box>
+          }
+        />
 
-        <Routes>
-          <Route
-            path="/login"
-            element={
+        {/* All dashboard routes with Sidebar + Navbar */}
+        <Route
+          path="*"
+          element={
+            <Box sx={{ display: 'flex' }}>
+              <Sidebar />
               <Box sx={{ flexGrow: 1, bgcolor: '#f4f7fe', minHeight: '100vh' }}>
-                <Login />
+                <Navbar />
+                <Routes>
+                  <Route path="/ecommerce" element={<EcommerceDashboard />} />
+                  <Route path="/analytics" element={<Analytics />} />
+                  <Route path="/crm" element={<Crm />} />
+                  <Route path="/user-profile" element={<UserProfile />} />
+                  <Route path="/my-account" element={<MyAccount />} />
+                  <Route path="/product-view" element={<ProductView />} />
+                  <Route path="/product-upload" element={<ProductUpload />} />
+                  <Route path="/orders" element={<OrdersPage />} />
+                  <Route path="/messages" element={<MessagesPage />} />
+                  <Route path="/notifications" element={<NotificationsPage />} />
+                  <Route path="/settings" element={<SettingsPage />} />
+                  <Route path="/blank-page" element={<BlankPage />} />
+
+                  {/* default fallback route */}
+                  <Route path="*" element={<EcommerceDashboard />} />
+                </Routes>
               </Box>
-            }
-          />
-          <Route
-            path="*"
-            element={
-              <>
-                <Sidebar />
-                <Box sx={{ flexGrow: 1, bgcolor: '#f4f7fe', minHeight: '100vh' }}>
-                  <Navbar />
-                  <Routes>
-                    <Route path="/ecommerce" element={<EcommerceDashboard />} />
-                    <Route path="/analytics" element={<Analytics />} />
-                    <Route path="/crm" element={<Crm />} /> {/* ✅ CRM Route */}
-                    <Route path="*" element={<EcommerceDashboard />} /> {/* default route */}
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/forgot-password" element={<ForgotPassword />} />
-                    <Route path="/user-profile" element={<UserProfile />} />
-                    <Route path="/my-account" element={<MyAccount />} />
-                    <Route path="/product-view" element={<ProductView />} />
-                    <Route path="/product-upload" element={<ProductUpload />} />
-                    <Route path="/orders" element={<OrdersPage />} />
-                    <Route path="/messages" element={<MessagesPage />} />
-                    <Route path="/notifications" element={<NotificationsPage />} />
-                    <Route path="/settings" element={<SettingsPage />} />
-                    <Route path="/blank-page" element={<BlankPage />} />
-
-
-
-
-
-
-
-
-
-
-
-                  </Routes>
-                </Box>
-              </>
-            }
-          />
-        </Routes>
-      </Box>
+            </Box>
+          }
+        />
+      </Routes>
     </Router>
   );
 };

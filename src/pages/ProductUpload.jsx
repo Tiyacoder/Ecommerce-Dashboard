@@ -7,155 +7,230 @@ import {
   TextField,
   MenuItem,
   Button,
-  Divider,
   List,
-  ListItem,
-  ListItemText
+  ListItem
 } from '@mui/material';
+import { CloudUpload } from '@mui/icons-material';
 
 const ProductUpload = () => {
-  const categories = ['Mans', 'Womens', 'Kids'];
-  const brands = ['Richman', 'Ecstasy', 'Aarong'];
-
   return (
-    <Box p={3}>
-      <Grid container spacing={3}>
-        {/* Left: Basic Info */}
-        <Grid item xs={12} md={8}>
-          <Paper elevation={3} sx={{ p: 3, borderRadius: 3 }}>
-            <Typography variant="h6" fontWeight={600} gutterBottom>
+    <Box sx={{ p: 3 }}>
+      <Box sx={{ display: 'flex', gap: 3 }}>
+        {/* Left Panel: Basic Information */}
+        <Box sx={{ flex: 1 }}>
+          <Paper sx={{ p: 3, borderRadius: 2 }}>
+            <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
               Basic Information
             </Typography>
 
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField fullWidth label="Title" placeholder="type here" />
-              </Grid>
+            <Typography fontSize={12} fontWeight={600} sx={{ mb: 0.5 }}>
+              TITLE
+            </Typography>
+            <TextField fullWidth placeholder="type here" size="small" sx={{ mb: 2 }} />
 
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  multiline
-                  rows={4}
-                  label="Description"
-                  placeholder="Type here..."
-                />
-              </Grid>
+            <Typography fontSize={12} fontWeight={600} sx={{ mb: 0.5 }}>
+              DESCRIPTION
+            </Typography>
+            <TextField
+              fullWidth
+              multiline
+              rows={5}
+              placeholder="Type here..."
+              size="small"
+              sx={{ mb: 2 }}
+            />
 
-              <Grid item xs={6}>
-                <TextField fullWidth select label="Category" value="Mans">
-                  {categories.map((cat) => (
-                    <MenuItem key={cat} value={cat}>
-                      {cat}
-                    </MenuItem>
-                  ))}
+            <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+              <Box sx={{ flex: 1 }}>
+                <Typography fontSize={12} fontWeight={600} sx={{ mb: 0.5 }}>
+                  CATEGORY
+                </Typography>
+                <TextField fullWidth select size="small" value="Mans">
+                  <MenuItem value="Mans">Mans</MenuItem>
+                  <MenuItem value="Womens">Womens</MenuItem>
                 </TextField>
-              </Grid>
-
-              <Grid item xs={6}>
-                <TextField fullWidth select label="Brand" value="Richman">
-                  {brands.map((b) => (
-                    <MenuItem key={b} value={b}>
-                      {b}
-                    </MenuItem>
-                  ))}
+              </Box>
+              <Box sx={{ flex: 1 }}>
+                <Typography fontSize={12} fontWeight={600} sx={{ mb: 0.5 }}>
+                  BRAND
+                </Typography>
+                <TextField fullWidth select size="small" value="Richman">
+                  <MenuItem value="Richman">Richman</MenuItem>
+                  <MenuItem value="Apex">Apex</MenuItem>
                 </TextField>
-              </Grid>
+              </Box>
+            </Box>
 
-              <Grid item xs={6}>
-                <TextField fullWidth label="Regular Price" placeholder="type here" />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField fullWidth label="Discount Price" placeholder="type here" />
-              </Grid>
+            <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+              <Box sx={{ flex: 1 }}>
+                <Typography fontSize={12} fontWeight={600} sx={{ mb: 0.5 }}>
+                  REGULAR PRICE
+                </Typography>
+                <TextField fullWidth placeholder="type here" size="small" />
+              </Box>
+              <Box sx={{ flex: 1 }}>
+                <Typography fontSize={12} fontWeight={600} sx={{ mb: 0.5 }}>
+                  DISCOUNT PRICE
+                </Typography>
+                <TextField fullWidth placeholder="type here" size="small" />
+              </Box>
+            </Box>
 
-              <Grid item xs={6}>
-                <TextField fullWidth label="Shipping Fee" placeholder="type here" />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField fullWidth label="Tax Rate" placeholder="type here" />
-              </Grid>
-
-              <Grid item xs={12}>
-                <TextField fullWidth label="Tags" placeholder="type here" />
-              </Grid>
-            </Grid>
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              <Box sx={{ flex: 1 }}>
+                <Typography fontSize={12} fontWeight={600} sx={{ mb: 0.5 }}>
+                  SHIPPING FEE
+                </Typography>
+                <TextField fullWidth placeholder="type here" size="small" />
+              </Box>
+              <Box sx={{ flex: 1 }}>
+                <Typography fontSize={12} fontWeight={600} sx={{ mb: 0.5 }}>
+                  TAX RATE
+                </Typography>
+                <TextField fullWidth placeholder="type here" size="small" />
+              </Box>
+            </Box>
           </Paper>
-        </Grid>
+        </Box>
 
-        {/* Right: Organization */}
-        <Grid item xs={12} md={4}>
-          <Paper elevation={3} sx={{ p: 3, borderRadius: 3 }}>
-            <Typography variant="h6" fontWeight={600} gutterBottom>
+        {/* Right Panel: Organization and Specification */}
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 3 }}>
+          <Paper sx={{ p: 3, borderRadius: 2 }}>
+            <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
               Organization
             </Typography>
 
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField fullWidth label="Add Category" placeholder="type here" />
-                <Button fullWidth variant="contained" sx={{ mt: 1 }}>
+            {['CATEGORY', 'BRAND', 'COLOR', 'SIZE'].map((label) => (
+              <Box key={label} sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <TextField
+                  placeholder={`type here`}
+                  fullWidth
+                  size="small"
+                  sx={{ mr: 2 }}
+                />
+                <Button variant="contained" sx={{ backgroundColor: '#0066FF' }}>
                   ADD
                 </Button>
-              </Grid>
+              </Box>
+            ))}
+          </Paper>
 
-              <Grid item xs={12}>
-                <TextField fullWidth label="Add Brand" placeholder="type here" />
-                <Button fullWidth variant="contained" sx={{ mt: 1 }}>
-                  ADD
-                </Button>
-              </Grid>
-
-              <Grid item xs={12}>
-                <TextField fullWidth label="Add Color" placeholder="type here" />
-                <Button fullWidth variant="contained" sx={{ mt: 1 }}>
-                  ADD
-                </Button>
-              </Grid>
-
-              <Grid item xs={12}>
-                <TextField fullWidth label="Add Size" placeholder="type here" />
-                <Button fullWidth variant="contained" sx={{ mt: 1 }}>
-                  ADD
-                </Button>
-              </Grid>
-            </Grid>
-
-            <Divider sx={{ my: 3 }} />
-
-            <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+          <Paper sx={{ p: 3, borderRadius: 2 }}>
+            <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
               Specification
             </Typography>
-
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <Typography fontSize={14} fontWeight={500} mb={1}>
-                  Size
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              <Box sx={{ flex: 1 }}>
+                <Typography fontSize={12} fontWeight={600} sx={{ mb: 1 }}>
+                  SIZE
                 </Typography>
-                <List dense sx={{ border: '1px solid #e0e0e0', borderRadius: 1 }}>
+                <List
+                  dense
+                  sx={{
+                    maxHeight: 120,
+                    overflowY: 'auto',
+                    border: '1px solid #ccc',
+                    borderRadius: 1,
+                  }}
+                >
                   {['Sm', 'Md', 'Lg', 'Xl', 'Xxl'].map((size) => (
                     <ListItem key={size} sx={{ py: 0.5 }}>
-                      <ListItemText primary={size} />
+                      {size}
                     </ListItem>
                   ))}
                 </List>
-              </Grid>
-
-              <Grid item xs={6}>
-                <Typography fontSize={14} fontWeight={500} mb={1}>
-                  Color
+              </Box>
+              <Box sx={{ flex: 1 }}>
+                <Typography fontSize={12} fontWeight={600} sx={{ mb: 1 }}>
+                  COLOR
                 </Typography>
-                <List dense sx={{ border: '1px solid #e0e0e0', borderRadius: 1 }}>
+                <List
+                  dense
+                  sx={{
+                    maxHeight: 120,
+                    overflowY: 'auto',
+                    border: '1px solid #ccc',
+                    borderRadius: 1,
+                  }}
+                >
                   {['Red', 'Green', 'Blue', 'Pink', 'Black'].map((color) => (
                     <ListItem key={color} sx={{ py: 0.5 }}>
-                      <ListItemText primary={color} />
+                      {color}
                     </ListItem>
                   ))}
                 </List>
-              </Grid>
-            </Grid>
+              </Box>
+            </Box>
           </Paper>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
+
+      {/* Media and Published Section */}
+      <Box sx={{ mt: 4 }}>
+        <Paper sx={{ p: 3, borderRadius: 2 }}>
+          <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+            Media And Published
+          </Typography>
+
+          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+            {[
+              'https://mironcoder-hotash.netlify.app/images/product/single/01.webp',
+              'https://mironcoder-hotash.netlify.app/images/product/single/02.webp',
+              'https://mironcoder-hotash.netlify.app/images/product/single/03.webp',
+              'https://mironcoder-hotash.netlify.app/images/product/single/04.webp'
+            ].map((img, index) => (
+              <Box
+                key={index}
+                component="img"
+                src={img}
+                alt={`upload-${index}`}
+                sx={{
+                  width: 120,
+                  height: 120,
+                  objectFit: 'contain',
+                  border: '2px dashed #ddd',
+                  borderRadius: 2,
+                  p: 1
+                }}
+              />
+            ))}
+
+            <Box
+              sx={{
+                width: 120,
+                height: 120,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                border: '2px dashed #ccc',
+                borderRadius: 2,
+                cursor: 'pointer',
+                color: '#999',
+                '&:hover': { borderColor: '#0066ff', color: '#0066ff' }
+              }}
+            >
+              <CloudUpload sx={{ fontSize: 30, mb: 1 }} />
+              <Typography fontSize={12}>image upload</Typography>
+            </Box>
+          </Box>
+
+          <Button
+            variant="contained"
+            fullWidth
+            sx={{
+              mt: 3,
+              backgroundColor: '#0066FF',
+              color: '#fff',
+              py: 1.5,
+              fontWeight: 600,
+              '&:hover': { backgroundColor: '#0055cc' }
+            }}
+          >
+            PUBLISH AND VIEW
+          </Button>
+        </Paper>
+      </Box>
     </Box>
   );
 };

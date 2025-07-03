@@ -17,15 +17,17 @@ import {
   Facebook as FacebookIcon,
   Twitter as TwitterIcon
 } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [role, setRole] = React.useState('');
+  const navigate = useNavigate();
 
   return (
     <Box
       sx={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #f0f4ff, #e6f0ff)', // ✅ Soft gradient background
+        background: 'linear-gradient(135deg, #f0f4ff, #e6f0ff)',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -42,7 +44,6 @@ const Login = () => {
           borderRadius: 2,
         }}
       >
-        {/* 🔥 Removed Logo Image */}
         <Typography variant="h6" sx={{ mb: 3 }}>
           Login to Hotash
         </Typography>
@@ -135,6 +136,16 @@ const Login = () => {
           }}
         >
           Continue with Facebook
+        </Button>
+
+        {/* Home Button */}
+        <Button
+          fullWidth
+          variant="outlined"
+          sx={{ mt: 2 }}
+          onClick={() => navigate('/ecommerce')}
+        >
+          Go to Home
         </Button>
 
         <Typography sx={{ mt: 3 }}>

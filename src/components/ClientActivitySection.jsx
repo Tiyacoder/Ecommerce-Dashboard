@@ -1,4 +1,3 @@
-// components/ClientActivitySection.jsx
 import React from 'react';
 import {
   Box,
@@ -26,19 +25,19 @@ const clients = [
 const activities = [
   {
     title: 'Your account is logged in',
-    desc: 'Vestibulum rutrum rutrum neque. Aenean auctor gravida sem quam pede lobortis ligula.',
+    desc: 'User logged in successfully using two-factor authentication.',
     time: '45 min ago',
     icon: <Avatar src="/avatars/miron.png" sx={{ width: 20, height: 20 }} />,
   },
   {
-    title: 'Current language has been changed',
-    desc: 'Vestibulum rutrum rutrum neque. Aenean auctor gravida sem quam pede lobortis ligula.',
+    title: 'Language setting updated',
+    desc: 'Language changed from English to Bangla.',
     time: '24 hr ago',
     icon: <Avatar src="https://flagcdn.com/w40/bd.png" variant="rounded" sx={{ width: 20, height: 14 }} />,
   },
   {
-    title: 'Asked about this product',
-    desc: 'Vestibulum rutrum rutrum neque. Aenean auctor gravida sem quam pede lobortis ligula.',
+    title: 'Asked about a product',
+    desc: 'User asked a question about the “Formal Blazer Jacket.”',
     time: 'Yesterday',
     icon: <FiberManualRecord sx={{ fontSize: 12 }} />,
   },
@@ -46,49 +45,65 @@ const activities = [
 
 const ClientActivitySection = () => {
   return (
-    <Box sx={{ display: 'flex', gap: 2, mt: 5 }}>
+    <Box sx={{ display: 'flex', gap: 2, mt: 5, flexWrap: 'wrap' }}>
       {/* Popular Clients */}
-      <Paper elevation={0} sx={{ flex: 1, p: 2, borderRadius: 2 }}>
+      <Paper elevation={0} sx={{ flex: 1, p: 2, borderRadius: 2, minWidth: 400 }}>
         <Typography variant="h6" sx={{ mb: 2 }}>Popular Clients</Typography>
-        <Box>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600, mb: 1 }}>
-            <Typography variant="body2">CLIENTS</Typography>
-            <Typography variant="body2">ORDERS</Typography>
-            <Typography variant="body2">AMOUNT</Typography>
-            <Typography variant="body2">ACTION</Typography>
-          </Box>
-          {clients.map((client, idx) => (
-            <Box key={idx} sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              mb: 3 // Increased spacing between rows
-            }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, width: '25%' }}>
-                <Avatar src={client.img} sx={{ width: 28, height: 28 }} />
-                <Typography variant="body2">{client.name}</Typography>
-              </Box>
-              <Typography variant="body2" sx={{ width: '15%' }}>{client.orders}</Typography>
-              <Typography variant="body2" sx={{ width: '15%' }}>{client.amount}</Typography>
-              <Box sx={{ display: 'flex', gap: 1, width: '25%' }}>
-                <Tooltip title="Message">
-                  <IconButton size="small" sx={{ bgcolor: '#bbf7d0' }}>
-                    <ChatBubbleOutline fontSize="small" />
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title="View">
-                  <IconButton size="small" sx={{ bgcolor: '#f0abfc' }}>
-                    <Visibility fontSize="small" />
-                  </IconButton>
-                </Tooltip>
-              </Box>
-            </Box>
-          ))}
+
+        {/* Table Header */}
+        <Box sx={{
+          display: 'flex',
+          fontWeight: 600,
+          mb: 1,
+          px: 1,
+        }}>
+          <Box sx={{ flex: 1.8 }}><Typography variant="body2">CLIENTS</Typography></Box>
+          <Box sx={{ flex: 1 }}><Typography variant="body2">ORDERS</Typography></Box>
+          <Box sx={{ flex: 1, pl: 2 }}><Typography variant="body2">AMOUNT</Typography></Box>
+          <Box sx={{ flex: 1, textAlign: 'center' }}><Typography variant="body2">ACTION</Typography></Box>
         </Box>
+
+        {/* Table Rows */}
+        {clients.map((client, idx) => (
+          <Box key={idx} sx={{
+            display: 'flex',
+            alignItems: 'center',
+            mb: 2,
+            px: 1,
+          }}>
+            {/* Client Info */}
+            <Box sx={{ flex: 1.8, display: 'flex', alignItems: 'center', gap: 1 }}>
+              <Avatar src={client.img} sx={{ width: 28, height: 28 }} />
+              <Typography variant="body2" noWrap>{client.name}</Typography>
+            </Box>
+
+            <Box sx={{ flex: 1 }}>
+              <Typography variant="body2">{client.orders}</Typography>
+            </Box>
+
+            <Box sx={{ flex: 1, pl: 2 }}>
+              <Typography variant="body2">{client.amount}</Typography>
+            </Box>
+
+            {/* Action Buttons */}
+            <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center', gap: 1 }}>
+              <Tooltip title="Message">
+                <IconButton size="small" sx={{ bgcolor: '#bbf7d0' }}>
+                  <ChatBubbleOutline fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="View">
+                <IconButton size="small" sx={{ bgcolor: '#f0abfc' }}>
+                  <Visibility fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            </Box>
+          </Box>
+        ))}
       </Paper>
 
       {/* Recent Activities */}
-      <Paper elevation={0} sx={{ flex: 1, p: 2, borderRadius: 2 }}>
+      <Paper elevation={0} sx={{ flex: 1, p: 2, borderRadius: 2, minWidth: 400 }}>
         <Typography variant="h6" sx={{ mb: 2 }}>Recent Activities</Typography>
         <Box>
           {activities.map((act, i) => (
@@ -96,7 +111,7 @@ const ClientActivitySection = () => {
               display: 'flex',
               gap: 2,
               alignItems: 'flex-start',
-              mb: 4 // Increased spacing between rows
+              mb: 4
             }}>
               <Box>{act.icon}</Box>
               <Box>

@@ -8,15 +8,17 @@ import {
   Button,
   Link
 } from '@mui/material';
-import { Email as EmailIcon } from '@mui/icons-material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Email as EmailIcon, Home as HomeIcon } from '@mui/icons-material';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 const ForgotPassword = () => {
+  const navigate = useNavigate();
+
   return (
     <Box
       sx={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #e0f7fa, #f1f8e9)', // soft teal to light green
+        background: 'linear-gradient(135deg, #e0f7fa, #f1f8e9)',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -80,6 +82,25 @@ const ForgotPassword = () => {
             </Link>
           </Typography>
         </Paper>
+
+        {/* ✅ Home Button */}
+        <Button
+          variant="outlined"
+          fullWidth
+          startIcon={<HomeIcon />}
+          onClick={() => navigate('/ecommerce')}
+          sx={{
+            mt: 3,
+            color: '#0066FF',
+            borderColor: '#0066FF',
+            '&:hover': {
+              borderColor: '#0055cc',
+              backgroundColor: '#f0f4ff',
+            },
+          }}
+        >
+          GO TO HOME
+        </Button>
       </Paper>
     </Box>
   );

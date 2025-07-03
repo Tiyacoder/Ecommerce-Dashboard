@@ -17,12 +17,15 @@ import ProductTable from '../components/ProductTable';
 import RevenueAndOrders from '../components/RevenueAndOrders';
 import ClientActivitySection from '../components/ClientActivitySection';
 
-
 const salesData = [
   { name: 'Jan', uv: 400 },
   { name: 'Feb', uv: 800 },
   { name: 'Mar', uv: 1000 },
   { name: 'Apr', uv: 1800 },
+  { name: 'May', uv: 1300 },
+  { name: 'Jun', uv: 1700 },
+  { name: 'Jul', uv: 1900 },
+  { name: 'Aug', uv: 1600 },
 ];
 
 const kpiCards = [
@@ -110,7 +113,7 @@ const KPIWidget = ({ card }) => {
                   type="monotone"
                   dataKey="uv"
                   stroke="#fff"
-                  strokeWidth={2}
+                  strokeWidth={3.5}
                   dot={false}
                 />
               </LineChart>
@@ -184,10 +187,10 @@ const EcommerceDashboard = () => {
       <Box mt={5}>
         <RevenueAndOrders />
       </Box>
-      <Box mt={5}>
-  <ClientActivitySection />
-</Box>
 
+      <Box mt={5}>
+        <ClientActivitySection />
+      </Box>
     </Box>
   );
 };

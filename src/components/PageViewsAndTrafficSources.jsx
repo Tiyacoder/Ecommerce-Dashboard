@@ -1,5 +1,15 @@
 import React from 'react';
-import { Box, Typography, Paper, IconButton } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Paper,
+  IconButton,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+} from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
 
 const PageViewsAndTrafficSources = () => {
@@ -15,20 +25,23 @@ const PageViewsAndTrafficSources = () => {
       {/* Page Views */}
       <Paper sx={{ p: 3, borderRadius: 3 }}>
         <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-          <Typography variant="subtitle1" fontWeight="600">Page Views</Typography>
-          <IconButton size="small"><MoreVert /></IconButton>
+          <Typography variant="subtitle1" fontWeight={600}>
+            Page Views
+          </Typography>
+          <IconButton size="small">
+            <MoreVert />
+          </IconButton>
         </Box>
 
-        <Box component="table" width="100%" sx={{ fontSize: 14 }}>
-          <Box component="thead" sx={{ bgcolor: '#f9fafb', fontWeight: 'bold' }}>
-            <Box component="tr" display="grid" gridTemplateColumns="3fr 2fr 1fr" py={1}>
-              <Box component="th">PAGE NAME</Box>
-              <Box component="th">VISITORS</Box>
-              <Box component="th">BOUNCE</Box>
-            </Box>
-          </Box>
-
-          <Box component="tbody" sx={{ display: 'grid', rowGap: '20px' }}>
+        <Table size="small">
+          <TableHead>
+            <TableRow sx={{ backgroundColor: '#f9fafb' }}>
+              <TableCell sx={{ fontWeight: 600 }}>PAGE NAME</TableCell>
+              <TableCell sx={{ fontWeight: 600 }}>VISITORS</TableCell>
+              <TableCell sx={{ fontWeight: 600 }}>BOUNCE</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
             {[
               ['/ecommerce', 5787, '20%'],
               ['/analytics', 4934, '35%'],
@@ -37,50 +50,54 @@ const PageViewsAndTrafficSources = () => {
               ['/product-upload', 2872, '55%'],
               ['/user-profile', 1236, '63%'],
             ].map(([name, visitors, bounce], i) => (
-              <Box
+              <TableRow
                 key={i}
-                component="tr"
-                display="grid"
-                gridTemplateColumns="3fr 2fr 1fr"
-                py={1.5}
-                alignItems="center"
+                hover
+                sx={{
+                  height: 70, // ⬅️ Increased row height
+                }}
               >
-                <Box component="td" display="flex" alignItems="center" gap={1}>
-                  <Typography color="primary" sx={{ display: 'inline-flex', alignItems: 'center' }}>
-                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M14 3H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-9l-7-7z" />
-                      <path d="M13 3v6h6" />
-                    </svg>
-                  </Typography>
-                  {name}
-                </Box>
-                <Box component="td">{visitors}</Box>
-                <Box component="td">{bounce}</Box>
-              </Box>
+                <TableCell>
+                  <Box display="flex" alignItems="center" gap={1}>
+                    <Typography color="primary" sx={{ display: 'inline-flex' }}>
+                      <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14 3H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-9l-7-7z" />
+                        <path d="M13 3v6h6" />
+                      </svg>
+                    </Typography>
+                    {name}
+                  </Box>
+                </TableCell>
+                <TableCell>{visitors}</TableCell>
+                <TableCell>{bounce}</TableCell>
+              </TableRow>
             ))}
-          </Box>
-        </Box>
+          </TableBody>
+        </Table>
       </Paper>
 
       {/* Traffic Sources */}
       <Paper sx={{ p: 3, borderRadius: 3 }}>
         <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-          <Typography variant="subtitle1" fontWeight="600">Traffic Sources</Typography>
-          <IconButton size="small"><MoreVert /></IconButton>
+          <Typography variant="subtitle1" fontWeight={600}>
+            Traffic Sources
+          </Typography>
+          <IconButton size="small">
+            <MoreVert />
+          </IconButton>
         </Box>
 
-        <Box component="table" width="100%" sx={{ fontSize: 14 }}>
-          <Box component="thead" sx={{ bgcolor: '#1d4ed8', color: 'white' }}>
-            <Box component="tr" display="grid" gridTemplateColumns="2fr 1fr 1fr 1fr 1fr" py={1}>
-              <Box component="th">SOURCE</Box>
-              <Box component="th">USERS</Box>
-              <Box component="th">SESSIONS</Box>
-              <Box component="th">BOUNCE</Box>
-              <Box component="th">DURATION</Box>
-            </Box>
-          </Box>
-
-          <Box component="tbody" sx={{ display: 'grid', rowGap: '20px' }}>
+        <Table size="small">
+          <TableHead>
+            <TableRow sx={{ backgroundColor: '#1d4ed8' }}>
+              <TableCell sx={{ color: 'white', fontWeight: 600 }}>SOURCE</TableCell>
+              <TableCell sx={{ color: 'white', fontWeight: 600 }}>USERS</TableCell>
+              <TableCell sx={{ color: 'white', fontWeight: 600 }}>SESSIONS</TableCell>
+              <TableCell sx={{ color: 'white', fontWeight: 600 }}>BOUNCE</TableCell>
+              <TableCell sx={{ color: 'white', fontWeight: 600 }}>DURATION</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
             {[
               ['Direct', 872, 1077, '63%', '00:09:18'],
               ['Referral', 789, 390, '74%', '00:03:20'],
@@ -89,23 +106,22 @@ const PageViewsAndTrafficSources = () => {
               ['Campaign', 7843, 2389, '35%', '00:15:25'],
               ['Others', 872, 1077, '63%', '00:09:18'],
             ].map(([source, users, sessions, bounce, duration], i) => (
-              <Box
+              <TableRow
                 key={i}
-                component="tr"
-                display="grid"
-                gridTemplateColumns="2fr 1fr 1fr 1fr 1fr"
-                py={1.5}
-                alignItems="center"
+                hover
+                sx={{
+                  height: 70, // ⬅️ Increased row height
+                }}
               >
-                <Box component="td" color="primary">{source}</Box>
-                <Box component="td">{users}</Box>
-                <Box component="td">{sessions}</Box>
-                <Box component="td">{bounce}</Box>
-                <Box component="td">{duration}</Box>
-              </Box>
+                <TableCell>{source}</TableCell>
+                <TableCell>{users}</TableCell>
+                <TableCell>{sessions}</TableCell>
+                <TableCell>{bounce}</TableCell>
+                <TableCell>{duration}</TableCell>
+              </TableRow>
             ))}
-          </Box>
-        </Box>
+          </TableBody>
+        </Table>
       </Paper>
     </Box>
   );

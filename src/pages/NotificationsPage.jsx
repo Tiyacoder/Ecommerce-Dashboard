@@ -1,109 +1,100 @@
 import React from 'react';
 import {
-  Box,
-  Paper,
-  Typography,
   Avatar,
+  Box,
+  Divider,
   IconButton,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Divider
+  Paper,
+  Typography
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 const notifications = [
   {
-    id: 1,
-    user: 'Mahmudul',
+    avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+    name: 'Mahmudul',
     action: 'added to his favorite list',
-    target: 'Leather belt steve madden',
-    avatar: '/assets/images/avatar1.jpg',
-    iconColor: 'error',
+    item: 'Leather belt steve madden'
   },
   {
-    id: 2,
-    user: 'labonno',
+    avatar: 'https://randomuser.me/api/portraits/women/65.jpg',
+    name: 'labonno',
     action: 'leave her comment to',
-    target: 'Dressni Breathable female Dress',
-    avatar: '/assets/images/avatar3.jpg',
-    iconColor: 'warning',
+    item: 'Dressni Breathable female Dress'
   },
   {
-    id: 3,
-    user: 'tahmina',
+    avatar: 'https://randomuser.me/api/portraits/women/66.jpg',
+    name: 'tahmina',
     action: 'announce to 50% discount',
-    target: 'New Exclusive long kurti',
-    avatar: '/assets/images/avatar2.jpg',
-    iconColor: 'success',
+    item: 'New Exclusive long kurti'
   },
   {
-    id: 4,
-    user: 'jubayer',
+    avatar: 'https://randomuser.me/api/portraits/men/64.jpg',
+    name: 'jubayer',
     action: 'write to his latest blog',
-    target: 'Best fashion outfit this winter',
-    avatar: '/assets/images/avatar4.jpg',
-    iconColor: 'primary',
+    item: 'Best fashion outfit this winter'
   },
   {
-    id: 5,
-    user: 'rebeka',
+    avatar: 'https://randomuser.me/api/portraits/women/67.jpg',
+    name: 'rebeka',
     action: 'give a review to',
-    target: 'Exclusive Designed Multicolor long Kaptan',
-    avatar: '/assets/images/avatar5.jpg',
-    iconColor: 'secondary',
+    item: 'Exclusive Designed Multicolor long Kaptan'
   },
   {
-    id: 6,
-    user: 'hotash',
+    avatar: '/favicon.ico',
+    name: 'hotash',
     action: 'privacy updated and secure all',
-    target: 'this multitask platform',
-    avatar: '/assets/images/logo.png',
-    iconColor: 'info',
-  },
+    item: 'this multitask platform'
+  }
 ];
+
+const NotificationItem = ({ avatar, name, action, item }) => (
+  <Box
+    sx={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      py: 1.5,
+      px: 2
+    }}
+  >
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Avatar src={avatar} sx={{ mr: 2 }} />
+      <Box>
+        <Typography variant="body1" fontWeight={500}>
+          {name}{' '}
+          <Typography component="span" fontWeight={400}>
+            {action}
+          </Typography>{' '}
+          <Typography component="span" fontWeight={500}>
+            {item}
+          </Typography>
+        </Typography>
+        <Typography variant="caption" color="text.secondary">
+          about few minutes ago!
+        </Typography>
+      </Box>
+    </Box>
+    <IconButton size="small">
+      <CloseIcon fontSize="small" />
+    </IconButton>
+  </Box>
+);
 
 const NotificationsPage = () => {
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h6" fontWeight="bold" gutterBottom>
-        All Notification
-      </Typography>
+      <Paper sx={{ p: 2, borderRadius: 2, boxShadow: 1 }}>
+        <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+          All Notification
+        </Typography>
 
-      <Paper sx={{ mt: 2 }}>
-        <List>
-          {notifications.map((noti, index) => (
-            <React.Fragment key={noti.id}>
-              <ListItem
-                secondaryAction={
-                  <IconButton edge="end">
-                    <CloseIcon />
-                  </IconButton>
-                }
-              >
-                <ListItemAvatar>
-                  <Avatar src={noti.avatar} />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={
-                    <>
-                      <Typography component="span" fontWeight="bold">
-                        {noti.user}
-                      </Typography>{' '}
-                      {noti.action}{' '}
-                      <Typography component="span" fontWeight="bold" color="primary">
-                        {noti.target}
-                      </Typography>
-                    </>
-                  }
-                  secondary="about few minutes ago!"
-                />
-              </ListItem>
-              {index < notifications.length - 1 && <Divider />}
-            </React.Fragment>
-          ))}
-        </List>
+        {notifications.map((notif, index) => (
+          <React.Fragment key={index}>
+            <NotificationItem {...notif} />
+            {index < notifications.length - 1 && <Divider />}
+          </React.Fragment>
+        ))}
       </Paper>
     </Box>
   );
