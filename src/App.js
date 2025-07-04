@@ -18,6 +18,9 @@ import MessagesPage from './pages/MessagesPage';
 import NotificationsPage from './pages/NotificationsPage';
 import SettingsPage from './pages/SettingsPage';
 import BlankPage from './pages/BlankPage';
+import ProductList from './pages/ProductList';
+import InvoiceList from './pages/InvoiceList';
+
 
 const App = () => {
   return (
@@ -71,9 +74,13 @@ const App = () => {
                   <Route path="/notifications" element={<NotificationsPage />} />
                   <Route path="/settings" element={<SettingsPage />} />
                   <Route path="/blank-page" element={<BlankPage />} />
+                  <Route path="/invoice-list" element={<InvoiceList />} />
 
-                  {/* default fallback route */}
+
+                  <Route path="/product-list" element={<ProductList />} />
+
                   <Route path="*" element={<EcommerceDashboard />} />
+                  
                 </Routes>
               </Box>
             </Box>

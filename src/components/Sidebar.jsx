@@ -19,6 +19,7 @@ const Sidebar = () => {
     authentication: false,
     users: false,
     products: false,
+    invoice: false, // ✅ added
   });
 
   const toggleMenu = (menu) => {
@@ -152,6 +153,32 @@ const Sidebar = () => {
                 <ListItemText primary="Product Upload" />
               </ListItemButton>
             </Link>
+            <Link to="/product-list" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemText primary="Product List" />
+              </ListItemButton>
+            </Link>
+          </List>
+        </Collapse>
+
+        {/* ✅ Invoice (NEW SECTION) */}
+        <ListItemButton onClick={() => toggleMenu('invoice')}>
+          <ListItemIcon><InsertDriveFile /></ListItemIcon>
+          <ListItemText primary="Invoice" />
+          {openMenus.invoice ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={openMenus.invoice} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <Link to="/invoice-list" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemText primary="Invoice List" />
+              </ListItemButton>
+            </Link>
+            <Link to="/invoice-details" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemText primary="Invoice Details" />
+              </ListItemButton>
+            </Link>
           </List>
         </Collapse>
 
@@ -199,7 +226,7 @@ const Sidebar = () => {
           </ListItemButton>
         </Link>
 
-        {/* ✅ Final: Blank Page */}
+        {/* Blank Page */}
         <Link to="/blank-page" style={{ textDecoration: 'none', color: 'inherit' }}>
           <ListItemButton>
             <ListItemIcon><InsertDriveFile /></ListItemIcon>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Typography,
@@ -14,6 +14,7 @@ import {
   TextField,
   IconButton,
   Avatar,
+  Pagination,
 } from '@mui/material';
 import {
   Delete as DeleteIcon,
@@ -22,7 +23,9 @@ import {
   Star,
 } from '@mui/icons-material';
 
+// Full list of 20 items (10 per page)
 const rows = [
+  // PAGE 1
   {
     id: 1,
     name: 'Gucci Hoodie',
@@ -173,9 +176,170 @@ const rows = [
     order: 70,
     sales: '$6k',
   },
+
+  // PAGE 2 (NEWLY ADDED ROWS)
+  {
+    id: 11,
+    name: 'Adidas Tracksuit',
+    subtitle: 'Athletic wear',
+    image: 'https://via.placeholder.com/40x40',
+    category: 'MEN',
+    brand: 'adidas',
+    price: '$100.00',
+    discount: '$85.00',
+    stock: 25,
+    rating: 4.3,
+    ratingCount: 15,
+    order: 110,
+    sales: '$10k',
+  },
+  {
+    id: 12,
+    name: 'Nike Sports Bra',
+    subtitle: 'Comfort wear',
+    image: 'https://via.placeholder.com/40x40',
+    category: 'WOMEN',
+    brand: 'nike',
+    price: '$60.00',
+    discount: '$52.00',
+    stock: 18,
+    rating: 4.5,
+    ratingCount: 12,
+    order: 90,
+    sales: '$7k',
+  },
+  {
+    id: 13,
+    name: 'Levi’s Jeans',
+    subtitle: 'Denim jeans',
+    image: 'https://via.placeholder.com/40x40',
+    category: 'MEN',
+    brand: 'levis',
+    price: '$80.00',
+    discount: '$70.00',
+    stock: 40,
+    rating: 4.7,
+    ratingCount: 30,
+    order: 130,
+    sales: '$11k',
+  },
+  {
+    id: 14,
+    name: 'Zara Crop Top',
+    subtitle: 'Trendy top',
+    image: 'https://via.placeholder.com/40x40',
+    category: 'WOMEN',
+    brand: 'zara',
+    price: '$35.00',
+    discount: '$30.00',
+    stock: 26,
+    rating: 4.2,
+    ratingCount: 18,
+    order: 88,
+    sales: '$6k',
+  },
+  {
+    id: 15,
+    name: 'Puma Hoodie',
+    subtitle: 'Winter wear',
+    image: 'https://via.placeholder.com/40x40',
+    category: 'MEN',
+    brand: 'puma',
+    price: '$90.00',
+    discount: '$78.00',
+    stock: 22,
+    rating: 4.4,
+    ratingCount: 20,
+    order: 98,
+    sales: '$9k',
+  },
+  {
+    id: 16,
+    name: 'H&M Skirt',
+    subtitle: 'Chic skirt',
+    image: 'https://via.placeholder.com/40x40',
+    category: 'WOMEN',
+    brand: 'h&m',
+    price: '$40.00',
+    discount: '$36.00',
+    stock: 20,
+    rating: 4.3,
+    ratingCount: 14,
+    order: 92,
+    sales: '$5k',
+  },
+  {
+    id: 17,
+    name: 'Gucci Watch',
+    subtitle: 'Luxury timepiece',
+    image: 'https://via.placeholder.com/40x40',
+    category: 'MEN',
+    brand: 'gucci',
+    price: '$500.00',
+    discount: '$460.00',
+    stock: 8,
+    rating: 4.9,
+    ratingCount: 9,
+    order: 47,
+    sales: '$21k',
+  },
+  {
+    id: 18,
+    name: 'Adidas Kids Cap',
+    subtitle: 'Stylish kids cap',
+    image: 'https://via.placeholder.com/40x40',
+    category: 'CHILDREN',
+    brand: 'adidas',
+    price: '$25.00',
+    discount: '$22.00',
+    stock: 30,
+    rating: 4.1,
+    ratingCount: 8,
+    order: 63,
+    sales: '$3k',
+  },
+  {
+    id: 19,
+    name: 'Nike Slides',
+    subtitle: 'Beach wear',
+    image: 'https://via.placeholder.com/40x40',
+    category: 'WOMEN',
+    brand: 'nike',
+    price: '$50.00',
+    discount: '$45.00',
+    stock: 19,
+    rating: 4.2,
+    ratingCount: 11,
+    order: 72,
+    sales: '$4k',
+  },
+  {
+    id: 20,
+    name: 'Levi’s Shirt',
+    subtitle: 'Casual wear',
+    image: 'https://via.placeholder.com/40x40',
+    category: 'MEN',
+    brand: 'levis',
+    price: '$65.00',
+    discount: '$58.00',
+    stock: 34,
+    rating: 4.3,
+    ratingCount: 13,
+    order: 100,
+    sales: '$6k',
+  },
 ];
 
 const ProductTable = () => {
+  const [page, setPage] = useState(1);
+  const rowsPerPage = 10;
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const paginatedRows = rows.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+
   return (
     <Box mt={5}>
       <Typography variant="h6" fontWeight={600} mb={2}>
@@ -183,20 +347,20 @@ const ProductTable = () => {
       </Typography>
 
       {/* Filters */}
-      <Box display="flex" gap={2} flexWrap="wrap" mb={2}>
-        <Select defaultValue="12" sx={{ minWidth: 150 }}>
+      <Box display="flex" gap={2} flexWrap="wrap" mb={2} width="100%">
+        <Select defaultValue="12" sx={{ flex: 1, minWidth: 150, height: '40px' }}>
           <MenuItem value="12">12 Row</MenuItem>
           <MenuItem value="24">24 Row</MenuItem>
           <MenuItem value="48">48 Row</MenuItem>
         </Select>
 
-        <Select defaultValue="MEN" sx={{ minWidth: 150 }}>
+        <Select defaultValue="MEN" sx={{ flex: 1, minWidth: 150, height: '40px' }}>
           <MenuItem value="MEN">MEN</MenuItem>
           <MenuItem value="WOMEN">WOMEN</MenuItem>
           <MenuItem value="CHILDREN">CHILDREN</MenuItem>
         </Select>
 
-        <Select defaultValue="gucci" sx={{ minWidth: 150 }}>
+        <Select defaultValue="gucci" sx={{ flex: 1, minWidth: 150, height: '40px' }}>
           <MenuItem value="gucci">gucci</MenuItem>
           <MenuItem value="h&m">h&m</MenuItem>
           <MenuItem value="zara">zara</MenuItem>
@@ -204,9 +368,16 @@ const ProductTable = () => {
 
         <TextField
           variant="outlined"
-          size="small"
           placeholder="id / name / category / brand"
-          sx={{ minWidth: 250 }}
+          sx={{
+            flex: 2,
+            minWidth: 250,
+            '& .MuiInputBase-root': {
+              height: '40px',
+              display: 'flex',
+              alignItems: 'center',
+            },
+          }}
         />
       </Box>
 
@@ -215,26 +386,17 @@ const ProductTable = () => {
         <Table>
           <TableHead sx={{ bgcolor: '#2563eb' }}>
             <TableRow>
-              {[
-                'UID',
-                'Product',
-                'Category',
-                'Brand',
-                'Price',
-                'Stock',
-                'Rating',
-                'Order',
-                'Sales',
-                'Action',
-              ].map((header, i) => (
-                <TableCell key={i} sx={{ color: '#fff', fontWeight: 600 }}>
-                  {header}
-                </TableCell>
-              ))}
+              {['UID', 'Product', 'Category', 'Brand', 'Price', 'Stock', 'Rating', 'Order', 'Sales', 'Action'].map(
+                (header, i) => (
+                  <TableCell key={i} sx={{ color: '#fff', fontWeight: 600 }}>
+                    {header}
+                  </TableCell>
+                )
+              )}
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((item) => (
+            {paginatedRows.map((item) => (
               <TableRow key={item.id}>
                 <TableCell># {item.id}</TableCell>
                 <TableCell>
@@ -252,14 +414,9 @@ const ProductTable = () => {
                 <TableCell>{item.brand}</TableCell>
                 <TableCell>
                   <Box>
-                    {item.price && (
-                      <Typography
-                        sx={{ textDecoration: 'line-through', color: '#9ca3af' }}
-                        variant="body2"
-                      >
-                        {item.price}
-                      </Typography>
-                    )}
+                    <Typography sx={{ textDecoration: 'line-through', color: '#9ca3af' }} variant="body2">
+                      {item.price}
+                    </Typography>
                     <Typography color="error" fontWeight={600}>
                       {item.discount}
                     </Typography>
@@ -294,6 +451,11 @@ const ProductTable = () => {
           </TableBody>
         </Table>
       </TableContainer>
+
+      {/* Pagination */}
+      <Box display="flex" justifyContent="flex-end" mt={2}>
+        <Pagination count={2} page={page} onChange={handleChangePage} color="primary" />
+      </Box>
     </Box>
   );
 };

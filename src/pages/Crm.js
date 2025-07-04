@@ -1,7 +1,8 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import CRMOverview from '../components/CRMOverview';
-import DealsPerformance from '../components/DealsPerformance'; // ✅ New import
+import DealsPerformance from '../components/DealsPerformance';
+import ClientActivitySection from '../components/ClientActivitySection'; // ✅ New import
 
 const Crm = () => {
   return (
@@ -16,6 +17,9 @@ const Crm = () => {
 
       {/* Deals Performance Section */}
       <DealsPerformance />
+
+      {/* Client Activity Section */}
+      <ClientActivitySection />
     </Box>
   );
 };

@@ -69,7 +69,7 @@ const UserProfile = () => {
         </Grid>
 
         {/* RIGHT PANEL: Cards + Recent Activities */}
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={8} sx={{ display: 'flex', flexDirection: 'column' }}>
           {/* Card Row */}
           <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
             <Paper
@@ -129,7 +129,16 @@ const UserProfile = () => {
           </Box>
 
           {/* Recent Activities */}
-          <Box sx={{ borderRadius: 2, p: 3, backgroundColor: '#fff', boxShadow: 1 }}>
+          <Box
+            sx={{
+              borderRadius: 2,
+              p: 3,
+              backgroundColor: '#fff',
+              boxShadow: 1,
+              flex: 1,
+              overflowY: 'auto'
+            }}
+          >
             <Typography variant="h6" fontWeight={600}>Recent Activities</Typography>
 
             <Box sx={{ mt: 3 }}>

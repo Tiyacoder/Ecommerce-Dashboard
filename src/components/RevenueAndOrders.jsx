@@ -46,8 +46,25 @@ const RevenueAndOrders = () => {
   return (
     <Box sx={{ display: 'flex', gap: 2, mt: 4, minHeight: 600 }}>
       {/* Revenue Report */}
-      <Paper elevation={0} sx={{ flex: 2, p: 3, borderRadius: 2, display: 'flex', flexDirection: 'column', height: '100%' }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+      <Paper
+        elevation={0}
+        sx={{
+          flex: 2,
+          p: 3,
+          borderRadius: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          height: 600, // set fixed height
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            mb: 3,
+          }}
+        >
           <Typography variant="h6">Revenue Report</Typography>
           <FormControl size="small">
             <Select defaultValue="monthly" displayEmpty>
@@ -58,38 +75,92 @@ const RevenueAndOrders = () => {
 
         <Box sx={{ display: 'flex', gap: 6, mb: 4 }}>
           <Box>
-            <Typography variant="caption" color="text.secondary">Invested</Typography>
-            <Typography variant="h6" fontWeight={600}>3,387.67K</Typography>
+            <Typography variant="caption" color="text.secondary">
+              Invested
+            </Typography>
+            <Typography variant="h6" fontWeight={600}>
+              3,387.67K
+            </Typography>
           </Box>
           <Box>
-            <Typography variant="caption" color="text.secondary">Earnings</Typography>
-            <Typography variant="h6" fontWeight={600}>2,856.35K</Typography>
+            <Typography variant="caption" color="text.secondary">
+              Earnings
+            </Typography>
+            <Typography variant="h6" fontWeight={600}>
+              2,856.35K
+            </Typography>
           </Box>
           <Box>
-            <Typography variant="caption" color="text.secondary">Expenses</Typography>
-            <Typography variant="h6" fontWeight={600}>1,994.12K</Typography>
+            <Typography variant="caption" color="text.secondary">
+              Expenses
+            </Typography>
+            <Typography variant="h6" fontWeight={600}>
+              1,994.12K
+            </Typography>
           </Box>
         </Box>
 
-        <ResponsiveContainer width="100%" height={330}>
+        <ResponsiveContainer width="100%" height={400}>
           <AreaChart data={revenueData}>
             <XAxis dataKey="month" />
             <YAxis />
             <Tooltip />
-            <Area type="stepAfter" dataKey="invested" stackId="1" stroke="#60a5fa" fill="#60a5fa" fillOpacity={0.3} />
-            <Area type="stepAfter" dataKey="earnings" stackId="1" stroke="#22c55e" fill="#22c55e" fillOpacity={0.3} />
-            <Area type="stepAfter" dataKey="expenses" stackId="1" stroke="#d946ef" fill="#d946ef" fillOpacity={0.3} />
+            <Area
+              type="stepAfter"
+              dataKey="invested"
+              stackId="1"
+              stroke="#60a5fa"
+              fill="#60a5fa"
+              fillOpacity={0.3}
+            />
+            <Area
+              type="stepAfter"
+              dataKey="earnings"
+              stackId="1"
+              stroke="#22c55e"
+              fill="#22c55e"
+              fillOpacity={0.3}
+            />
+            <Area
+              type="stepAfter"
+              dataKey="expenses"
+              stackId="1"
+              stroke="#d946ef"
+              fill="#d946ef"
+              fillOpacity={0.3}
+            />
           </AreaChart>
         </ResponsiveContainer>
       </Paper>
 
       {/* Orders Overview */}
-      <Paper elevation={0} sx={{ flex: 1, p: 3, borderRadius: 2, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <Paper
+        elevation={0}
+        sx={{
+          flex: 1,
+          p: 3,
+          borderRadius: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: 600, // match height
+        }}
+      >
         <Box>
-          <Typography variant="h6" sx={{ mb: 3 }}>Orders Overview</Typography>
+          <Typography variant="h6" sx={{ mb: 3 }}>
+            Orders Overview
+          </Typography>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
-              <Pie data={ordersOverviewData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} innerRadius={45}>
+              <Pie
+                data={ordersOverviewData}
+                dataKey="value"
+                nameKey="name"
+                cx="50%"
+                cy="50%"
+                outerRadius={80}
+                innerRadius={45}
+              >
                 {ordersOverviewData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
@@ -105,11 +176,21 @@ const RevenueAndOrders = () => {
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                py: 2, // ⬅️ Increased vertical space between rows
+                py: 2,
               }}
             >
-              <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: item.color }} />
+              <Typography
+                variant="body2"
+                sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+              >
+                <Box
+                  sx={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: '50%',
+                    bgcolor: item.color,
+                  }}
+                />
                 {item.name}
               </Typography>
               <Typography variant="body2">{item.count}</Typography>
