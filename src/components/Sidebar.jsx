@@ -19,7 +19,7 @@ const Sidebar = () => {
     authentication: false,
     users: false,
     products: false,
-    invoice: false, // ✅ added
+    invoice: false,
   });
 
   const toggleMenu = (menu) => {
@@ -118,6 +118,11 @@ const Sidebar = () => {
         </ListItemButton>
         <Collapse in={openMenus.users} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
+            <Link to="/user-list" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemText primary="User List" />
+              </ListItemButton>
+            </Link>
             <Link to="/user-profile" style={{ textDecoration: 'none', color: 'inherit' }}>
               <ListItemButton sx={{ pl: 4 }}>
                 <ListItemText primary="Profile" />
@@ -161,7 +166,7 @@ const Sidebar = () => {
           </List>
         </Collapse>
 
-        {/* ✅ Invoice (NEW SECTION) */}
+        {/* Invoice */}
         <ListItemButton onClick={() => toggleMenu('invoice')}>
           <ListItemIcon><InsertDriveFile /></ListItemIcon>
           <ListItemText primary="Invoice" />

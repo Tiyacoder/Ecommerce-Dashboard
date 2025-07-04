@@ -84,18 +84,18 @@ const DealsPerformance = () => {
         Deals_performance
       </Typography>
 
-      <Box display="flex" flexWrap="wrap" gap={2} mb={3}>
-        <FormControl sx={{ minWidth: 120 }}>
+      <Box display="flex" flexWrap="wrap" gap={2} mb={3} width="100%">
+        <FormControl sx={{ flex: 1, minWidth: 150 }}>
           <InputLabel>Show by</InputLabel>
-          <Select defaultValue="12 Row" label="Show by">
+          <Select defaultValue="12 Row" label="Show by" fullWidth>
             <MenuItem value="12 Row">12 Row</MenuItem>
             <MenuItem value="24 Row">24 Row</MenuItem>
           </Select>
         </FormControl>
 
-        <FormControl sx={{ minWidth: 150 }}>
+        <FormControl sx={{ flex: 1, minWidth: 150 }}>
           <InputLabel>Status by</InputLabel>
-          <Select defaultValue="Won Leads" label="Status by">
+          <Select defaultValue="Won Leads" label="Status by" fullWidth>
             <MenuItem value="Won Leads">Won Leads</MenuItem>
             <MenuItem value="New Leads">New Leads</MenuItem>
             <MenuItem value="Open Leads">Open Leads</MenuItem>
@@ -103,8 +103,20 @@ const DealsPerformance = () => {
           </Select>
         </FormControl>
 
-        <TextField type="date" label="Brand by" InputLabelProps={{ shrink: true }} />
-        <TextField label="Search by" placeholder="id / name / email" />
+        <TextField
+          type="date"
+          label="Brand by"
+          InputLabelProps={{ shrink: true }}
+          fullWidth
+          sx={{ flex: 1, minWidth: 150 }}
+        />
+
+        <TextField
+          label="Search by"
+          placeholder="id / name / email"
+          fullWidth
+          sx={{ flex: 2, minWidth: 300 }}
+        />
       </Box>
 
       <Box component="table" width="100%" sx={{ fontSize: 14 }}>
@@ -129,7 +141,7 @@ const DealsPerformance = () => {
         </Box>
 
         <Box component="tbody">
-          {deals.map((deal, i) => (
+          {deals.map((deal) => (
             <Box
               key={deal.id}
               component="tr"

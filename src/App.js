@@ -20,6 +20,9 @@ import SettingsPage from './pages/SettingsPage';
 import BlankPage from './pages/BlankPage';
 import ProductList from './pages/ProductList';
 import InvoiceList from './pages/InvoiceList';
+import InvoiceDetails from './pages/InvoiceDetails'; 
+import UserList from "./pages/userList";
+
 
 
 const App = () => {
@@ -27,7 +30,6 @@ const App = () => {
     <Router>
       <CssBaseline />
       <Routes>
-        {/* Standalone auth routes (NO Sidebar/Navbar) */}
         <Route
           path="/login"
           element={
@@ -75,6 +77,10 @@ const App = () => {
                   <Route path="/settings" element={<SettingsPage />} />
                   <Route path="/blank-page" element={<BlankPage />} />
                   <Route path="/invoice-list" element={<InvoiceList />} />
+                  <Route path="/invoice-details" element={<InvoiceDetails />} />
+                  <Route path="/user-list" element={<UserList />} />
+
+
 
 
                   <Route path="/product-list" element={<ProductList />} />

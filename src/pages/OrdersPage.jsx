@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   Box, Typography, Grid, Select, MenuItem, TextField,
   FormControl, InputLabel, Paper, Table, TableBody, TableCell,
-  TableContainer, TableHead, TableRow, Avatar, IconButton, Button, Checkbox
+  TableContainer, TableHead, TableRow, Avatar, IconButton, Checkbox
 } from '@mui/material';
 import { Visibility, Delete, FileDownload } from '@mui/icons-material';
 
@@ -88,42 +88,60 @@ const OrdersPage = () => {
   return (
     <Box p={3}>
       {/* KPI Cards */}
-      <Grid container spacing={2} mb={3}>
+      <Box display="flex" gap={2} flexWrap="wrap" mb={3}>
         {[
           { label: 'Pending_orders', count: 547, color: '#d63384' },
           { label: 'Shipped_orders', count: 398, color: '#0d6efd' },
           { label: 'Received_orders', count: 605, color: '#198754' },
           { label: 'Cancelled_orders', count: 249, color: '#dc3545' },
         ].map((card, idx) => (
-          <Grid item xs={12} sm={6} md={3} key={idx}>
-            <Paper sx={{
-              p: 2, borderRadius: 2, background: card.color, color: 'white',
-              display: 'flex', flexDirection: 'column', alignItems: 'flex-start'
-            }}>
-              <Typography variant="h5" fontWeight="bold">{card.count}</Typography>
-              <Typography variant="body2">{card.label}</Typography>
-            </Paper>
-          </Grid>
+          <Box
+            key={idx}
+            flex="1 1 0"
+            minWidth="250px"
+            component={Paper}
+            sx={{
+              py: 3,
+              px: 2,
+              borderRadius: 2,
+              background: card.color,
+              color: 'white',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+            }}
+          >
+            <Typography variant="h5" fontWeight="bold">{card.count}</Typography>
+            <Typography variant="body2">{card.label}</Typography>
+          </Box>
         ))}
-      </Grid>
+      </Box>
 
       {/* Filters */}
       <Paper sx={{ p: 2, mb: 2 }}>
         <Typography variant="h6" mb={2}>Order Information</Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={3}>
+        <Grid container spacing={2} wrap="nowrap">
+          <Grid item sx={{ flex: 1 }}>
             <FormControl fullWidth>
               <InputLabel>Show by</InputLabel>
-              <Select value={rowsPerPage} onChange={(e) => setRowsPerPage(e.target.value)} label="Show by">
+              <Select
+                value={rowsPerPage}
+                onChange={(e) => setRowsPerPage(e.target.value)}
+                label="Show by"
+              >
                 <MenuItem value="12">12 Row</MenuItem>
                 <MenuItem value="25">25 Row</MenuItem>
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={3}>
+          <Grid item sx={{ flex: 1 }}>
             <FormControl fullWidth>
               <InputLabel>Status by</InputLabel>
-              <Select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} label="Status by">
+              <Select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                label="Status by"
+              >
                 <MenuItem value="Pending">Pending</MenuItem>
                 <MenuItem value="Shipped">Shipped</MenuItem>
                 <MenuItem value="Received">Received</MenuItem>
@@ -131,7 +149,7 @@ const OrdersPage = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={3}>
+          <Grid item sx={{ flex: 1 }}>
             <TextField
               fullWidth
               type="date"
@@ -141,7 +159,7 @@ const OrdersPage = () => {
               InputLabelProps={{ shrink: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={3}>
+          <Grid item sx={{ flex: 1 }}>
             <TextField
               fullWidth
               value={search}
