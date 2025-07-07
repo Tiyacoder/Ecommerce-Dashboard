@@ -17,9 +17,6 @@ import StarIcon from '@mui/icons-material/Star';
 import ReplyIcon from '@mui/icons-material/Reply';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-/* ------------------------------------------------------------------- */
-/*  Static/mock data                                                   */
-/* ------------------------------------------------------------------- */
 const colors = ['RED', 'BLUE', 'GREEN', 'YELLOW', 'PURPLE'];
 const sizes = ['SM', 'MD', 'LG', 'XL', 'XXL'];
 const tags = ['SUITE', 'PARTY', 'DRESS', 'SMART', 'MAN', 'STYLES'];
@@ -67,7 +64,6 @@ const reviewData = [
   },
 ];
 
-
 const ProductView = () => {
   const [mainImage, setMainImage] = useState(imageUrls[0]);
 
@@ -79,22 +75,21 @@ const ProductView = () => {
   return (
     <Box p={3}>
       <Paper elevation={3} sx={{ borderRadius: 3, p: 4, maxWidth: 1100, mx: 'auto' }}>
-        {/* Product gallery & basic details */}
-        <Grid container spacing={4}>
+        <Grid container spacing={4} alignItems="flex-start" wrap="nowrap">
           {/* Left – Images */}
-          <Grid item xs={12} md={6}>
+          <Grid item xs={5}>
             <Box
               sx={{
                 border: '2px dashed #eee',
                 borderRadius: 2,
-                p: 3,
+                p: 2,
                 textAlign: 'center',
               }}
             >
-              <img src={mainImage} alt="Product" style={{ width: '60%', borderRadius: 10 }} />
+              <img src={mainImage} alt="Product" style={{ width: '90%', borderRadius: 10 }} />
             </Box>
 
-            <Stack direction="row" spacing={2} mt={2} justifyContent="center">
+            <Stack direction="row" spacing={1.5} mt={2} justifyContent="center" flexWrap="wrap">
               {imageUrls.map((url, i) => (
                 <Avatar
                   key={i}
@@ -102,9 +97,9 @@ const ProductView = () => {
                   src={url}
                   onClick={() => setMainImage(url)}
                   sx={{
-                    width: 60,
-                    height: 60,
-                    border: '1px solid #eee',
+                    width: 50,
+                    height: 50,
+                    border: '1px solid #ccc',
                     cursor: 'pointer',
                     transition: '0.2s',
                     '&:hover': { border: '2px solid #1976d2' },
@@ -115,12 +110,12 @@ const ProductView = () => {
           </Grid>
 
           {/* Right – Info */}
-          <Grid item xs={12} md={6}>
+          <Grid item xs={7}>
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Formal suits for men wedding slim fit 3 piece dress business party jacket
             </Typography>
 
-            <Stack spacing={1}>
+            <Stack spacing={1.5}>
               <Info label="Brand" value="Ecstasy" />
               <Info label="Category" value="Man's" />
               <Info label="Tags" chips={tags} />
@@ -130,9 +125,9 @@ const ProductView = () => {
                 label="Price"
                 value={
                   <>
-                    <Typography component="span" fontWeight={600}>
+                    <Typography component="span" fontWeight={600} mr={1}>
                       $37.00
-                    </Typography>{' '}
+                    </Typography>
                     <Typography component="span" sx={{ color: 'red', textDecoration: 'line-through' }}>
                       $42.00
                     </Typography>
@@ -146,7 +141,7 @@ const ProductView = () => {
           </Grid>
         </Grid>
 
-        {/* Product description */}
+        {/* Product Description */}
         <Box mt={5}>
           <Typography variant="subtitle1" fontWeight={600} mb={1}>
             Product Description
@@ -162,7 +157,7 @@ const ProductView = () => {
           </Typography>
         </Box>
 
-        {/* Rating analytics */}
+        {/* Rating Analytics */}
         <Box mt={5}>
           <Box display="flex" alignItems="center" mb={3}>
             <Typography variant="subtitle1" fontWeight={600} sx={{ mr: 1 }}>
@@ -171,14 +166,8 @@ const ProductView = () => {
             <Box flexGrow={1} height={1} bgcolor="#e0e0e0" />
           </Box>
 
-          <Grid
-            container
-            spacing={4}
-            alignItems="center"
-            justifyContent="center"
-            textAlign="center"
-          >
-            {/* Left – bar breakdown */}
+          <Grid container spacing={4} alignItems="center" justifyContent="center" textAlign="center">
+            {/* Rating Breakdown */}
             <Grid item xs={12} md={6}>
               <Stack spacing={1.8}>
                 {ratingData.map(({ star, count }) => {
@@ -211,30 +200,19 @@ const ProductView = () => {
               </Stack>
             </Grid>
 
-            {/* Right – summary */}
-            <Grid
-              item
-              xs={12}
-              md={6}
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              justifyContent="center"
-            >
+            {/* Average Rating */}
+            <Grid item xs={12} md={6} display="flex" flexDirection="column" alignItems="center">
               <Typography fontWeight={600} mb={1}>
                 Total Review ({totalReviews})
               </Typography>
-
               <Typography variant="h2" fontWeight={700} color="#2c2e43">
                 {avgRating}
               </Typography>
-
               <Stack direction="row" spacing={0.5} mt={1}>
                 {[...Array(5)].map((_, i) => (
                   <StarIcon key={i} fontSize="medium" sx={{ color: '#fbc02d' }} />
                 ))}
               </Stack>
-
               <Typography variant="body2" color="text.secondary" mt={0.5}>
                 Your Average Rating Star
               </Typography>
@@ -242,7 +220,7 @@ const ProductView = () => {
           </Grid>
         </Box>
 
-        {/* Customer reviews */}
+        {/* Customer Reviews */}
         <Box mt={5}>
           <Typography variant="subtitle1" fontWeight={600} mb={1}>
             Customer Reviews
@@ -255,26 +233,16 @@ const ProductView = () => {
                   <Grid item>
                     <Avatar src={r.avatar} sx={{ width: 56, height: 56, border: '3px solid #1976d2' }} />
                   </Grid>
-
                   <Grid item xs>
                     <Typography fontWeight={600}>{r.name}</Typography>
                     <Typography variant="caption" color="text.secondary">
                       {r.timeAgo}
                     </Typography>
-
-                    <Rating
-                      value={r.stars}
-                      readOnly
-                      size="small"
-                      sx={{ mt: 1, mb: 1 }}
-                      precision={0.5}
-                    />
-
+                    <Rating value={r.stars} readOnly size="small" sx={{ mt: 1, mb: 1 }} precision={0.5} />
                     <Typography variant="body2" color="text.secondary">
                       {r.text}
                     </Typography>
                   </Grid>
-
                   <Grid item>
                     <Stack direction="row" spacing={1} alignItems="center">
                       <Button
@@ -295,12 +263,11 @@ const ProductView = () => {
           </Stack>
         </Box>
 
-        {/* Review reply form */}
+        {/* Review Form */}
         <Box mt={6}>
           <Typography variant="subtitle1" fontWeight={600} mb={1}>
             Review Reply Form
           </Typography>
-
           <TextField
             placeholder="write here"
             multiline
@@ -313,7 +280,6 @@ const ProductView = () => {
               '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
             }}
           />
-
           <Button
             variant="contained"
             fullWidth
@@ -327,10 +293,9 @@ const ProductView = () => {
   );
 };
 
-
 const Info = ({ label, value, chips }) => (
   <Box display="flex" alignItems="flex-start" gap={1}>
-    <Typography width={90} fontWeight={500} sx={{ color: 'text.secondary' }}>
+    <Typography width={100} fontWeight={500} sx={{ color: 'text.secondary' }}>
       {label}:
     </Typography>
     {chips ? (

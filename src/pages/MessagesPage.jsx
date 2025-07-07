@@ -7,13 +7,13 @@ import {
 import { Search, MoreVert, Send } from '@mui/icons-material';
 
 const chatUsers = [
-  { id: 1, name: 'Miron Mahmud', time: 'Now', message: 'whats your current career opportunity...', avatar: '/assets/images/avatar1.jpg', unread: 3, online: true },
-  { id: 2, name: 'Tahmina Bonny', time: '~3m', message: 'whats your current career opportunity...', avatar: '/assets/images/avatar2.jpg', unread: 0, online: false },
-  { id: 3, name: 'Labonno Khan', time: '~5h', message: 'whats your current career opportunity...', avatar: '/assets/images/avatar3.jpg', unread: 1, online: true },
-  { id: 4, name: 'Shipon Ahmed', time: '~7d', message: 'whats your current career opportunity...', avatar: '/assets/images/avatar4.jpg', unread: 0, online: true },
-  { id: 5, name: 'Rabeya Akter', time: '~9s', message: 'whats your current career opportunity...', avatar: '/assets/images/avatar5.jpg', unread: 0, online: false },
-  { id: 6, name: 'Shah Nasrullah', time: '~4w', message: 'whats your current career opportunity...', avatar: '/assets/images/avatar6.jpg', unread: 0, online: false },
-  { id: 7, name: 'Hotash Admin', time: 'Now', message: 'whats your current career opportunity...', avatar: '/assets/images/avatar7.jpg', unread: 0, online: true },
+  { id: 1, name: 'Miron Mahmud', time: 'Now', message: 'whats your current career opportunity...', avatar: 'https://i.pravatar.cc/150?img=1', unread: 3, online: true },
+  { id: 2, name: 'Tahmina Bonny', time: '~3m', message: 'whats your current career opportunity...', avatar: 'https://i.pravatar.cc/150?img=2', unread: 0, online: false },
+  { id: 3, name: 'Labonno Khan', time: '~5h', message: 'whats your current career opportunity...', avatar: 'https://i.pravatar.cc/150?img=3', unread: 1, online: true },
+  { id: 4, name: 'Shipon Ahmed', time: '~7d', message: 'whats your current career opportunity...', avatar: 'https://i.pravatar.cc/150?img=4', unread: 0, online: true },
+  { id: 5, name: 'Rabeya Akter', time: '~9s', message: 'whats your current career opportunity...', avatar: 'https://i.pravatar.cc/150?img=5', unread: 0, online: false },
+  { id: 6, name: 'Shah Nasrullah', time: '~4w', message: 'whats your current career opportunity...', avatar: 'https://i.pravatar.cc/150?img=6', unread: 0, online: false },
+  { id: 7, name: 'Hotash Admin', time: 'Now', message: 'whats your current career opportunity...', avatar: 'https://i.pravatar.cc/150?img=7', unread: 0, online: true },
 ];
 
 const messages = [
@@ -24,7 +24,6 @@ const messages = [
   { from: 'them', text: 'Perfect. Let’s do a quick sync at 4:30 then.', time: 'Just now' },
 ];
 
-
 const MessagesPage = () => {
   const [selectedUser, setSelectedUser] = useState(chatUsers[0]);
   const [input, setInput] = useState('');
@@ -33,8 +32,8 @@ const MessagesPage = () => {
     <Box sx={{ height: '100vh', display: 'flex', justifyContent: 'center' }}>
       <Box sx={{ display: 'flex', width: '1200px', height: '100%' }}>
         
-        {/* Left Sidebar - 50% width */}
-        <Box sx={{ width: '50%', height: '100%', borderRight: '1px solid #eee' }}>
+        {/* Left Sidebar - 4/12 width */}
+        <Box sx={{ width: '33.33%', height: '100%', borderRight: '1px solid #eee' }}>
           <Paper sx={{ height: '100%', p: 2, borderRadius: 0, display: 'flex', flexDirection: 'column' }}>
             <TextField
               fullWidth
@@ -99,8 +98,8 @@ const MessagesPage = () => {
           </Paper>
         </Box>
 
-        {/* Right Chat Window - 50% width */}
-        <Box sx={{ width: '50%', height: '100%' }}>
+        {/* Right Chat Window - 8/12 width */}
+        <Box sx={{ width: '66.66%', height: '100%' }}>
           <Paper sx={{ height: '100%', p: 2, borderRadius: 0, display: 'flex', flexDirection: 'column' }}>
             {/* Chat Header */}
             <Box display="flex" alignItems="center" mb={2}>

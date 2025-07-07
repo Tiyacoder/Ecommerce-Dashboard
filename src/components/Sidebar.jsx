@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   Drawer, List, ListItemButton, ListItemIcon, ListItemText,
-  Collapse, Typography, Divider, Box, Badge
+  Collapse, Typography, Divider, Box
 } from '@mui/material';
 
 import {
@@ -109,11 +109,31 @@ const Sidebar = () => {
         {/* Users */}
         <ListItemButton onClick={() => toggleMenu('users')}>
           <ListItemIcon>
-            <Badge badgeContent="HOT" color="error">
-              <Group />
-            </Badge>
+            <Group />
           </ListItemIcon>
-          <ListItemText primary="Users" />
+          <ListItemText
+            primary={
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                Users
+                <Box
+                  sx={{
+                    fontSize: '10px',
+                    fontWeight: 600,
+                    backgroundColor: '#f44336',
+                    color: 'white',
+                    px: 1,
+                    borderRadius: '6px',
+                    height: '18px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    lineHeight: 1
+                  }}
+                >
+                  HOT
+                </Box>
+              </Box>
+            }
+          />
           {openMenus.users ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse in={openMenus.users} timeout="auto" unmountOnExit>
@@ -139,11 +159,31 @@ const Sidebar = () => {
         {/* Products */}
         <ListItemButton onClick={() => toggleMenu('products')}>
           <ListItemIcon>
-            <Badge badgeContent="NEW" color="secondary">
-              <Storefront />
-            </Badge>
+            <Storefront />
           </ListItemIcon>
-          <ListItemText primary="Products" />
+          <ListItemText
+            primary={
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                Products
+                <Box
+                  sx={{
+                    fontSize: '10px',
+                    fontWeight: 600,
+                    backgroundColor: '#9c27b0',
+                    color: 'white',
+                    px: 1,
+                    borderRadius: '6px',
+                    height: '18px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    lineHeight: 1
+                  }}
+                >
+                  NEW
+                </Box>
+              </Box>
+            }
+          />
           {openMenus.products ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse in={openMenus.products} timeout="auto" unmountOnExit>
@@ -190,11 +230,7 @@ const Sidebar = () => {
         {/* Orders */}
         <Link to="/orders" style={{ textDecoration: 'none', color: 'inherit' }}>
           <ListItemButton>
-            <ListItemIcon>
-              <Badge badgeContent={5} color="primary">
-                <ShoppingCart />
-              </Badge>
-            </ListItemIcon>
+            <ListItemIcon><ShoppingCart /></ListItemIcon>
             <ListItemText primary="Orders" />
           </ListItemButton>
         </Link>
@@ -202,11 +238,7 @@ const Sidebar = () => {
         {/* Messages */}
         <Link to="/messages" style={{ textDecoration: 'none', color: 'inherit' }}>
           <ListItemButton>
-            <ListItemIcon>
-              <Badge badgeContent={3} color="primary">
-                <Mail />
-              </Badge>
-            </ListItemIcon>
+            <ListItemIcon><Mail /></ListItemIcon>
             <ListItemText primary="Messages" />
           </ListItemButton>
         </Link>
@@ -214,11 +246,7 @@ const Sidebar = () => {
         {/* Notifications */}
         <Link to="/notifications" style={{ textDecoration: 'none', color: 'inherit' }}>
           <ListItemButton>
-            <ListItemIcon>
-              <Badge badgeContent={9} color="primary">
-                <Notifications />
-              </Badge>
-            </ListItemIcon>
+            <ListItemIcon><Notifications /></ListItemIcon>
             <ListItemText primary="Notifications" />
           </ListItemButton>
         </Link>

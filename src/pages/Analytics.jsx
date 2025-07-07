@@ -148,10 +148,8 @@ const Analytics = () => {
         ))}
       </Box>
 
-      {/* Visitors + Country Section */}
       <TrafficAndCountrySection />
 
-      {/* Page Views + Traffic Sources Section */}
       <PageViewsAndTrafficSources />
     </Box>
   );
