@@ -9,6 +9,7 @@ import {
   ShoppingCart, Mail, Notifications, Settings, InsertDriveFile, Storefront
 } from '@mui/icons-material';
 
+import { useTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -21,6 +22,8 @@ const Sidebar = () => {
     products: false,
     invoice: false,
   });
+
+  const theme = useTheme();
 
   const toggleMenu = (menu) => {
     setOpenMenus((prev) => ({ ...prev, [menu]: !prev[menu] }));
@@ -35,8 +38,9 @@ const Sidebar = () => {
         [`& .MuiDrawer-paper`]: {
           width: drawerWidth,
           boxSizing: 'border-box',
-          backgroundColor: '#fff',
-          borderRight: '1px solid #e0e0e0',
+          backgroundColor: theme.palette.background.paper,
+          color: theme.palette.text.primary,
+          borderRight: `1px solid ${theme.palette.divider}`,
         },
       }}
     >
@@ -46,7 +50,7 @@ const Sidebar = () => {
         </Typography>
       </Box>
       <Divider />
-      <Typography variant="caption" sx={{ pl: 2, color: '#888' }}>
+      <Typography variant="caption" sx={{ pl: 2, color: theme.palette.text.secondary }}>
         MAIN PAGES
       </Typography>
 
@@ -108,9 +112,7 @@ const Sidebar = () => {
 
         {/* Users */}
         <ListItemButton onClick={() => toggleMenu('users')}>
-          <ListItemIcon>
-            <Group />
-          </ListItemIcon>
+          <ListItemIcon><Group /></ListItemIcon>
           <ListItemText
             primary={
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -158,9 +160,7 @@ const Sidebar = () => {
 
         {/* Products */}
         <ListItemButton onClick={() => toggleMenu('products')}>
-          <ListItemIcon>
-            <Storefront />
-          </ListItemIcon>
+          <ListItemIcon><Storefront /></ListItemIcon>
           <ListItemText
             primary={
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>

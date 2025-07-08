@@ -5,8 +5,8 @@ import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import EcommerceDashboard from './pages/EcommerceDashboard';
 import Analytics from './pages/Analytics';
-import Crm from './pages/Crm'; 
-import Login from './pages/Login'; 
+import Crm from './pages/Crm';
+import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import UserProfile from './pages/UserProfile';
@@ -20,20 +20,28 @@ import SettingsPage from './pages/SettingsPage';
 import BlankPage from './pages/BlankPage';
 import ProductList from './pages/ProductList';
 import InvoiceList from './pages/InvoiceList';
-import InvoiceDetails from './pages/InvoiceDetails'; 
-import UserList from "./pages/userList";
-
-
+import InvoiceDetails from './pages/InvoiceDetails';
+import UserList from './pages/userList';
+import { useTheme } from '@mui/material/styles';
 
 const App = () => {
+  const theme = useTheme();
+
   return (
     <Router>
       <CssBaseline />
       <Routes>
+        {/* Auth Pages */}
         <Route
           path="/login"
           element={
-            <Box sx={{ flexGrow: 1, bgcolor: '#f4f7fe', minHeight: '100vh' }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                bgcolor: theme.palette.background.default,
+                minHeight: '100vh',
+              }}
+            >
               <Login />
             </Box>
           }
@@ -41,7 +49,13 @@ const App = () => {
         <Route
           path="/register"
           element={
-            <Box sx={{ flexGrow: 1, bgcolor: '#f4f7fe', minHeight: '100vh' }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                bgcolor: theme.palette.background.default,
+                minHeight: '100vh',
+              }}
+            >
               <Register />
             </Box>
           }
@@ -49,19 +63,31 @@ const App = () => {
         <Route
           path="/forgot-password"
           element={
-            <Box sx={{ flexGrow: 1, bgcolor: '#f4f7fe', minHeight: '100vh' }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                bgcolor: theme.palette.background.default,
+                minHeight: '100vh',
+              }}
+            >
               <ForgotPassword />
             </Box>
           }
         />
 
-        {/* All dashboard routes with Sidebar + Navbar */}
+        {/* Main App with Sidebar + Navbar */}
         <Route
           path="*"
           element={
             <Box sx={{ display: 'flex' }}>
               <Sidebar />
-              <Box sx={{ flexGrow: 1, bgcolor: '#f4f7fe', minHeight: '100vh' }}>
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  bgcolor: theme.palette.background.default,
+                  minHeight: '100vh',
+                }}
+              >
                 <Navbar />
                 <Routes>
                   <Route path="/ecommerce" element={<EcommerceDashboard />} />
@@ -79,14 +105,9 @@ const App = () => {
                   <Route path="/invoice-list" element={<InvoiceList />} />
                   <Route path="/invoice-details" element={<InvoiceDetails />} />
                   <Route path="/user-list" element={<UserList />} />
-
-
-
-
                   <Route path="/product-list" element={<ProductList />} />
-
+                  {/* Default Fallback */}
                   <Route path="*" element={<EcommerceDashboard />} />
-                  
                 </Routes>
               </Box>
             </Box>

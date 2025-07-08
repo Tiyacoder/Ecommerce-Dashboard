@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -8,7 +8,6 @@ import {
   Avatar,
   Badge,
   Typography,
-  alpha,
 } from '@mui/material';
 import {
   Search,
@@ -17,15 +16,21 @@ import {
   Email,
   Notifications,
   Settings,
+  LightMode,
 } from '@mui/icons-material';
+import { useTheme } from '@mui/material/styles';
+import { ColorModeContext } from '../context/ThemeContext';
 
 const Navbar = () => {
+  const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
+
   return (
     <AppBar
       position="sticky"
       elevation={0}
       sx={{
-        bgcolor: '#fff',
+        bgcolor: theme.palette.background.paper,
         borderBottom: '1px solid #e5e7eb',
         zIndex: 1201,
       }}
@@ -36,7 +41,7 @@ const Navbar = () => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            bgcolor: '#f2f6fa',
+            bgcolor: theme.palette.mode === 'light' ? '#f2f6fa' : '#333',
             px: 2,
             py: 0.5,
             borderRadius: 2,
@@ -52,8 +57,12 @@ const Navbar = () => {
 
         {/* Icons & Profile */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <IconButton>
-            <DarkMode sx={{ fontSize: 20 }} />
+          <IconButton onClick={colorMode.toggleColorMode}>
+            {theme.palette.mode === 'dark' ? (
+              <LightMode sx={{ fontSize: 20 }} />
+            ) : (
+              <DarkMode sx={{ fontSize: 20 }} />
+            )}
           </IconButton>
           <IconButton>
             <Language sx={{ fontSize: 20 }} />
